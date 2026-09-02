@@ -276,6 +276,15 @@ export function Rig({ radius }: { radius: number }) {
     // without needing to distinguish a tap from a drag explicitly.
     const onEnd = () => {
       spin.current.dragging = false;
+      // `mouseButtons.left = ROTATE` means even a plain click (0px
+      // mousedown->mouseup) runs the library's own drag lifecycle and fires
+      // this same 'controlend' — not just real throws. A click also starts a
+      // fly-to (see Scene.tsx's pointerup handler) that sets a fresh rotation
+      // target the same tick, before this listener runs. Re-anchoring here
+      // would stomp that target back onto the pre-transition angle, which is
+      // why the globe used to zoom toward a clicked node without ever turning
+      // to face it. `cameraBusy` is true for exactly the fly-to's duration.
+      if (useGlobeStore.getState().cameraBusy) return;
       // Close the drag lag before coasting.
       //
       // A drag rotates with transition enabled, so the rendered angle

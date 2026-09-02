@@ -1007,7 +1007,7 @@ button:focus-visible {
 .search-box__results {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
+  left: 0;
   width: 280px;
   max-height: 320px;
   overflow-y: auto;
