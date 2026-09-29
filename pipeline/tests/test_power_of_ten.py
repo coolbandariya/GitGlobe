@@ -76,6 +76,14 @@ LONG_FUNCTION_ALLOWLIST = {
         "Orchestrates UMAP manifold projection. The addition of sub-sampling for large graphs "
         "(50k+) naturally sits here before UMAP initialization to prevent OOM errors. It's "
         "better to keep the 62-line configuration contiguous.",
+    ("embed/nvidia.py", "run"):
+        "TRACKED, NOT ACCEPTED. Keeps the NVIDIA embedding request lifecycle visible while "
+        "the provider adapter is still being validated. Split into request, polling, and "
+        "result parsing helpers after provider behavior has dedicated tests.",
+    ("ingest/readme_backfill.py", "backfill"):
+        "TRACKED, NOT ACCEPTED. Coordinates per-band resumability and recovery of README "
+        "symlinks and nonstandard filenames. Split only after the checkpoint and retry "
+        "contracts have focused tests so a refactor cannot lose recovered rows.",
 }
 # `flow.py::ingest_repositories` and `phase2.py::stage_build` were here until
 # the length check started excluding docstrings. Both are comfortably under the
