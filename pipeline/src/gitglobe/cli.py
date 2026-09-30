@@ -540,7 +540,7 @@ async def _cmd_learn(args: argparse.Namespace) -> int:
 
 
 async def _cmd_embed_nv(args: argparse.Namespace) -> int:
-    from .embed.nvidia import COLLECTION, DEFAULT_DIM, DEFAULT_MODEL, run
+    from .embed.nvidia import run
 
     async def go(db, settings):
         if not settings.nvidia_api_key:
