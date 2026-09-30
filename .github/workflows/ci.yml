@@ -65,4 +65,4 @@ jobs:
       - name: Run unit tests
         run: uv run python -m unittest discover -s tests -v
       - name: Lint
-        run: uv run ruff check src
+        run: uv run ruff check --select E,F src
